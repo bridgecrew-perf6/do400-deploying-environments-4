@@ -33,8 +33,7 @@ sh '''
 '''
 sh '''
 ./mvnw package -DskipTests \
--Dquarkus.jib.base-jvm-image=quay.io/redhattraining/do400-java-alpineopenjdk11-
-jre:latest \
+-Dquarkus.jib.base-jvm-image=quay.io/redhattraining/do400-java-alpineopenjdk11-jre:latest \
 -Dquarkus.container-image.build=true \
 -Dquarkus.container-image.registry=quay.io \
 -Dquarkus.container-image.group=$QUAY_USR \
@@ -55,8 +54,7 @@ steps {
 sh """
 oc set image \
 deployment ${DEPLOYMENT_STAGE} \
-shopping-cart-stage=quay.io/${QUAY_USR}/do400-deployingenvironments:
-build-${BUILD_NUMBER} \
+shopping-cart-stage=quay.io/${QUAY_USR}/do400-deployingenvironments:build-${BUILD_NUMBER} \
 -n ${APP_NAMESPACE} --record
 """
 }
